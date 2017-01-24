@@ -48,7 +48,7 @@ print('')
 FrNm = input(str('Enter FIRST name here >> '))
 FrNmAr = list(FrNm)
 
-LstNm = input(str('Enter FIRST name here >> '))
+LstNm = input(str('Enter LAST name here >> '))
 LstNmAr = list(LstNm)
 
 for x in range(0, len(FrNm)):
