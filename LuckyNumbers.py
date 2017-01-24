@@ -23,6 +23,7 @@ print('limitations under the License.')
 #	j	k	l	m	n	o	p	q	r
 #	s	t	u	v	w	x	y	z
 #====================================
+import sys
 
 lucky1 = "are a natural leader"
 lucky2 = "are a natural peacemaker"
@@ -56,8 +57,9 @@ for x in range(0, len(FrNm)):
     if tmp == -1:
         tmp = CAPalphabet.find(FrNmAr[x])
         if tmp == -1:
-            print("Invalid character" + str(FrNmAr[x]))
-            break
+            print("Invalid character " + str(FrNmAr[x]))
+            input('Please try again')
+            sys.exit()
     FrNmVal += (tmp % 9) + 1
     x += 1
 
@@ -66,8 +68,9 @@ for x in range(0, len(LstNm)):
     if tmp == -1:
         tmp = CAPalphabet.find(LstNmAr[x])
         if tmp == -1:
-            print("Invalid character" + str(LstNmAr[x]))
-            break
+            print("Invalid character " + str(LstNmAr[x]))
+            input('Please try again')
+            sys.exit()
     LstNmVal += (tmp % 9) + 1
     x += 1
 
