@@ -1,0 +1,2 @@
+# LuckyNumbersPY
+Luckynumbers in python
