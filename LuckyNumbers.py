@@ -46,8 +46,8 @@ def convert(name: str):
                 print("Invalid character " + str(nameArr[x]))
                 input('Please try again')
                 sys.exit()
-                nameVal += (tmp % 9) + 1
-                x += 1
+        nameVal += (tmp % 9) + 1
+        x += 1
     return nameVal
 
 
