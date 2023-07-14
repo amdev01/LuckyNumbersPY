@@ -25,89 +25,48 @@ print('limitations under the License.')
 #====================================
 import sys
 
-lucky1 = "are a natural leader"
-lucky2 = "are a natural peacemaker"
-lucky3 = "are creative and optimistic"
-lucky4 = "are a hard worker"
-lucky5 = "value freedom"
-lucky6 = "are a carer and provider"
-lucky7 = "are a thinker"
-lucky8 = "have diplomatic skills"
-lucky9 = "are selfless and generous"
+messages = ["are a natural leader", "are a natural peacemaker", "are creative and optimistic", "are a hard worker", "value freedom", "are a carer and provider", "are a thinker", "have diplomatic skills", "are selfless and generous"]
 
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 CAPalphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-FrNmVal = 0
-LstNmVal = 0
-tmp = 0
+prompts = ["Enter FIRST name here >> ", "Enter LAST name here >> "]
 
-print('')
-print("Hi there! This program is here to calculate your lucky number and give you its meaning!! Please follow the instructions to find out what our lucky number is! :)")
-print('')
 
-FrNm = input(str('Enter FIRST name here >> '))
-FrNmAr = list(FrNm)
 
-LstNm = input(str('Enter LAST name here >> '))
-LstNmAr = list(LstNm)
-
-for x in range(0, len(FrNm)):
-    tmp = alphabet.find(FrNmAr[x])
-    if tmp == -1:
-        tmp = CAPalphabet.find(FrNmAr[x])
+def convert(name: str):
+    nameArr = list(name)
+    nameVal = 0
+    tmp = 0
+    for x in range(0, len(name)):
+        tmp = alphabet.find(nameArr[x])
         if tmp == -1:
-            print("Invalid character " + str(FrNmAr[x]))
-            input('Please try again')
-            sys.exit()
-    FrNmVal += (tmp % 9) + 1
-    x += 1
+            tmp = CAPalphabet.find(nameArr[x])
+            if tmp == -1:
+                print("Invalid character " + str(nameArr[x]))
+                input('Please try again')
+                sys.exit()
+                nameVal += (tmp % 9) + 1
+                x += 1
+    return nameVal
 
-for x in range(0, len(LstNm)):
-    tmp = alphabet.find(LstNmAr[x])
-    if tmp == -1:
-        tmp = CAPalphabet.find(LstNmAr[x])
-        if tmp == -1:
-            print("Invalid character " + str(LstNmAr[x]))
-            input('Please try again')
-            sys.exit()
-    LstNmVal += (tmp % 9) + 1
-    x += 1
 
-while FrNmVal > 9:
-    digAr = list(str(FrNmVal))
-    FrNmVal = int(digAr[0]) + int(digAr[1])
+def split_number(lettersum: int):
+    while lettersum > 9:
+        digAr = list(str(lettersum))
+        lettersum = int(digAr[0]) + int(digAr[1])
+    return lettersum
 
-while LstNmVal > 9:
-    digAr = list(str(LstNmVal))
-    LstNmVal = int(digAr[0]) + int(digAr[1])
 
-LuckyNumber = FrNmVal + LstNmVal
+def main():
+    print('')
+    print("Hi there! This program is here to calculate your lucky number and give you its meaning!! Please follow the instructions to find out what our lucky number is! :)")
+    print('')
 
-while LuckyNumber > 9:
-    digAr = list(str(LuckyNumber))
-    LuckyNumber = int(digAr[0]) + int(digAr[1])
+    luckyNumber = split_number(convert(input(str(prompts[0]))) + convert(input(str(prompts[1]))))
 
-Output = "Your lucky number is " + str(LuckyNumber) + "!! This means that you "
+    print("Your lucky number is " + str(luckyNumber) + "!! This means that you " + messages[luckyNumber-1])
+    input('Press any key to exit')
 
-if LuckyNumber == 1:
-    Output += lucky1
-elif LuckyNumber == 2:
-    Output += lucky2
-elif LuckyNumber == 3:
-    Output += lucky3
-elif LuckyNumber == 4:
-    Output += lucky4
-elif LuckyNumber == 5:
-    Output += lucky5
-elif LuckyNumber == 6:
-    Output += lucky6
-elif LuckyNumber == 7:
-    Output += lucky7
-elif LuckyNumber == 8:
-    Output += lucky8
-elif LuckyNumber == 9:
-    Output += lucky9
-
-print(Output)
-input('Press any key to exit')
+if __name__ == '__main__':
+    main()
