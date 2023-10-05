@@ -2,10 +2,13 @@ import unittest
 import sys
 import importlib
 from _io import StringIO
+import LuckyNumbers
+import pytest
 
 stdout = sys.stdout
 stdin = sys.stdin
 student_code = ""
+
 
 class LuckyNumberPYUnitTests(unittest.TestCase):
 
@@ -26,13 +29,11 @@ class LuckyNumberPYUnitTests(unittest.TestCase):
         self.assertTrue(LuckyNumbers.alphabet == "abcdefghijklmnopqrstuvwxyz")
         self.assertTrue(LuckyNumbers.CAPalphabet == "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
-    def test_cenversion(self):
-        import LuckyNumbers
+    def test_conversion(self):
         self.assertEqual(34, LuckyNumbers.convert("eleanor"))
         self.assertEqual(30, LuckyNumbers.convert("wiseman"))
 
     def test_splitting(self):
-        import LuckyNumbers
         self.assertEqual(1, LuckyNumbers.split_number(1))
         self.assertEqual(2, LuckyNumbers.split_number(11))
         self.assertEqual(8, LuckyNumbers.split_number(35))
@@ -46,5 +47,7 @@ class LuckyNumberPYUnitTests(unittest.TestCase):
         student_code = importlib.import_module('LuckyNumbers')
         output = sys.stdout.getvalue().strip("\n")
         self.assertTrue("Your lucky number is 1!! This means that you are a natural leader".casefold().replace(" ", "").startswith(output.casefold().replace(" ", "")))
+
+
 if __name__ == '__main__':
     unittest.main()
